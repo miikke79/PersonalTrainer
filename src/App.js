@@ -73,8 +73,8 @@ function App() {
   const [value, setValue] = useState('customers');
   const [open, setOpen] = useState(false);
   const theme = useTheme();
-  
-  
+
+
   const handleChange = (event, value) => {
     setValue(value);
   };
@@ -130,7 +130,7 @@ function App() {
             <ListItemIcon>
               {<PersonIcon />}
             </ListItemIcon>
-            <ListItemText primary='Customer' />
+            <ListItemText primary='Customers' />
           </ListItem>
           <ListItem button='true' value='trainings' onClick={(e) => handleChange(e, 'trainings')}>
             <ListItemIcon>
