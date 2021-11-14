@@ -10,22 +10,14 @@ function AddTraining(props) {
 
     const [open, setOpen] = React.useState(false);
     const [training, setTraining] = React.useState({
-        firstname: '',
-        lastname: '',
         date: '',
-        activity: '',
         duration: '',
+        activity: '',
+        customer: '',
 
     })
     const handleClickOpen = () => {
-        console.log(props.row.value[1].href);
-        setTraining({
-            firstname: props.row.data.firstname,
-            lastname: props.row.data.lastname,
-            date: props.row.data.date,
-            activity: props.row.data.activity,
-            duration: props.row.data.duration,
-        })
+        setTraining({ ...training, customer: props.row.value[1].href });
         setOpen(true);
     };
 
@@ -34,7 +26,8 @@ function AddTraining(props) {
     };
 
     const handleSave = () => {
-        props.addTraining(props.row.value[1].href, training);
+        props.addTraining(training);
+        console.log(training);
         handleClose();
     };
 

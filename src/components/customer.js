@@ -13,7 +13,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 function Customer() {
 
     const [customers, setCustomers] = useState([]);
-    const [open, setOpen] = useState([]);
+    const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("");
 
     const handleClose = () => {
@@ -50,7 +50,7 @@ function Customer() {
     };
 
     const editCustomer = (url, updatedCustomer) => {
-        fetch(url+'/trainings', {
+        fetch(url, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -83,8 +83,8 @@ function Customer() {
 
     };
 
-    const addTraining = (url, newTrainings) => {
-        fetch(url, {
+    const addTraining = (newTrainings) => {
+        fetch('https://customerrest.herokuapp.com/api/trainings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

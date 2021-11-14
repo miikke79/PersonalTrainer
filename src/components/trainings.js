@@ -9,7 +9,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 function Trainings() {
 
     const [trainings, setTrainings] = useState([]);
-    const [open, setOpen] = useState([]);
+    const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("");
 
     useEffect(() => {
@@ -25,7 +25,7 @@ function Trainings() {
 
     const deleteTrainings = trainingsId => {
         if (window.confirm('Are you 100% sure you want to delete this?')) {
-            fetch('https://customerrest.herokuapp.com/api/trainings/'+trainingsId, { method: 'DELETE' })
+            fetch('https://customerrest.herokuapp.com/api/trainings/' + trainingsId, { method: 'DELETE' })
                 .then((response) => {
                     if (response.ok) {
                         setMsg("Training deleted");
