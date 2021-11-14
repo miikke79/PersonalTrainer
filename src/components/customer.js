@@ -41,7 +41,7 @@ function Customer() {
                         fetchCustomers();
                     }
                     else {
-                        alert('Error, deletion failed')
+                        alert('Error, nothing deleted')
                     }
                 })
                 .catch(err => console.error(err))
@@ -64,7 +64,7 @@ function Customer() {
                     fetchCustomers();
                 }
                 else {
-                    alert('Error, not updated failed')
+                    alert('Error, customer not updated')
                 }
             })
 
@@ -78,8 +78,16 @@ function Customer() {
             },
             body: JSON.stringify(customer)
         })
-            .then(response => fetchCustomers())
-            .catch(err => console.error(err))
+        .then((response) => {
+            if (response.ok) {
+                setMsg("New customer added");
+                setOpen(true);
+                fetchCustomers();
+            }
+            else {
+                alert('Error, customer not added')
+            }
+        })
 
     };
 
@@ -91,8 +99,16 @@ function Customer() {
             },
             body: JSON.stringify(newTrainings)
         })
-            .then(response => fetchCustomers())
-            .catch(err => console.error(err))
+        .then((response) => {
+            if (response.ok) {
+                setMsg("Training session added");
+                setOpen(true);
+                fetchCustomers();
+            }
+            else {
+                alert('Error, training session not added')
+            }
+        })
 
     };
 

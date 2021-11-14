@@ -58,7 +58,7 @@ function AddTraining(props) {
                     <TextField
                         margin="dense"
                         name="date"
-                        value={training.date}
+                        value={(training.date)}
                         onChange={inputChanged}
                         label="Date"
                         fullWidth
