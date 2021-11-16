@@ -5,12 +5,15 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function AddTraining(props) {
 
     const [open, setOpen] = React.useState(false);
     const [training, setTraining] = React.useState({
-        date: '',
+        date: new Date(),
         duration: '',
         activity: '',
         customer: '',
@@ -27,12 +30,15 @@ function AddTraining(props) {
 
     const handleSave = () => {
         props.addTraining(training);
-        console.log(training);
         handleClose();
     };
 
     const inputChanged = event => {
         setTraining({ ...training, [event.target.name]: event.target.value })
+    }
+
+    const handleDate = newDate => {
+        setTraining({ ...training, date: newDate })
     }
 
 
@@ -55,15 +61,19 @@ function AddTraining(props) {
                         variant="standard"
                     />
 
-                    <TextField
-                        margin="dense"
-                        name="date"
-                        value={(training.date)}
-                        onChange={inputChanged}
-                        label="Date"
-                        fullWidth
-                        variant="standard"
-                    />
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DateTimePicker
+                        clearable
+                            renderInput={(props) => <TextField 
+                            margin="dense"
+                            fullWidth
+                            variant="standard"{...props} />}
+                            label="Date"
+                            value={training.date}
+                            onChange={date => handleDate(date)}
+                        />
+                    </LocalizationProvider>
+
 
                     <TextField
                         margin="dense"
