@@ -36,12 +36,12 @@ function AddCustomer(props) {
         setCustomer({ ...customer, [event.target.name]: event.target.value })
     }
 
-
     return (
         <div>
             <Button variant="outlined" onClick={handleClickOpen}>
                 Add New Customer
             </Button>
+
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Add New Customer</DialogTitle>
                 <DialogContent>

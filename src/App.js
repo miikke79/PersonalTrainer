@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import Customer from './components/customer';
 import Trainings from './components/trainings';
+import Calendar from './components/calendar';
+import Statistics from './components/statistics';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -20,6 +22,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import TodayIcon from '@mui/icons-material/Today';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 
 const drawerWidth = 240;
 
@@ -132,11 +136,23 @@ function App() {
             </ListItemIcon>
             <ListItemText primary='Customers' />
           </ListItem>
-          <ListItem button='true' value='trainings' onClick={(e) => handleChange(e, 'trainings')}>
+          <ListItem button='true' onClick={(e) => handleChange(e, 'trainings')}>
             <ListItemIcon>
               {<DirectionsRunIcon />}
             </ListItemIcon>
             <ListItemText primary='Trainings' />
+          </ListItem>
+          <ListItem button='true' onClick={(e) => handleChange(e, 'calendar')}>
+            <ListItemIcon>
+              {<TodayIcon />}
+            </ListItemIcon>
+            <ListItemText primary='Calendar' />
+          </ListItem>
+          <ListItem button='true' onClick={(e) => handleChange(e, 'statistics')}>
+            <ListItemIcon>
+              {<EqualizerIcon />}
+            </ListItemIcon>
+            <ListItemText primary='Statistics' />
           </ListItem>
         </List>
       </Drawer>
@@ -145,6 +161,8 @@ function App() {
         <Typography paragraph>
           {value === 'customers' && <Customer />}
           {value === 'trainings' && <Trainings />}
+          {value === 'calendar' && <Calendar />}
+          {value === 'statistics' && <Statistics />}
         </Typography>
       </Main>
     </Box>

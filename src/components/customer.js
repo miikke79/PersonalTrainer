@@ -15,10 +15,16 @@ function Customer() {
     const [customers, setCustomers] = useState([]);
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("");
+    const [gridApi, setGridApi] = useState(null);
+  
+    const onGridReady = (params) => {
+      setGridApi(params.api);
+
+    };
 
     const handleClose = () => {
         setOpen(false);
-    }
+    };
 
     useEffect(() => {
         fetchCustomers()
@@ -30,6 +36,11 @@ function Customer() {
             .then(data => setCustomers(data.content))
             .catch(err => console.error(err))
     };
+
+    const onBtnExport = () => {
+        gridApi.exportDataAsCsv();
+        console.log(gridApi);
+      };
 
     const deleteCustomer = url => {
         if (window.confirm('Are you sure you want to delete this customer?')) {
@@ -78,16 +89,16 @@ function Customer() {
             },
             body: JSON.stringify(customer)
         })
-        .then((response) => {
-            if (response.ok) {
-                setMsg("New customer added");
-                setOpen(true);
-                fetchCustomers();
-            }
-            else {
-                alert('Error, customer not added')
-            }
-        })
+            .then((response) => {
+                if (response.ok) {
+                    setMsg("New customer added");
+                    setOpen(true);
+                    fetchCustomers();
+                }
+                else {
+                    alert('Error, customer not added')
+                }
+            })
 
     };
 
@@ -99,16 +110,16 @@ function Customer() {
             },
             body: JSON.stringify(newTrainings)
         })
-        .then((response) => {
-            if (response.ok) {
-                setMsg("Training session added");
-                setOpen(true);
-                fetchCustomers();
-            }
-            else {
-                alert('Error, training session not added')
-            }
-        })
+            .then((response) => {
+                if (response.ok) {
+                    setMsg("Training session added");
+                    setOpen(true);
+                    fetchCustomers();
+                }
+                else {
+                    alert('Error, training session not added')
+                }
+            })
 
     };
 
@@ -158,10 +169,11 @@ function Customer() {
                     columnDefs={columns}
                     pagination={true}
                     paginationPageSize={10}
+                    onGridReady={onGridReady}
                 >
                 </AgGridReact>
             </div>
-
+            <Button variant="outlined" onClick={() => onBtnExport()}>Download CSV export file</Button>
             <Snackbar
                 open={open}
                 message={msg}
