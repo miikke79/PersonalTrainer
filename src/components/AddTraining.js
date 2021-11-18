@@ -63,11 +63,11 @@ function AddTraining(props) {
 
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DateTimePicker
-                        clearable
-                            renderInput={(props) => <TextField 
-                            margin="dense"
-                            fullWidth
-                            variant="standard"{...props} />}
+                            clearable
+                            renderInput={(props) => <TextField
+                                margin="dense"
+                                fullWidth
+                                variant="standard"{...props} />}
                             label="Date"
                             value={training.date}
                             onChange={date => handleDate(date)}

@@ -11,18 +11,16 @@ function Calender() {
         activity: '',
         name: '',
         date: '',
-        duration: ''
     }]);
 
     const fetchTrainings = () => {
         fetch('https://customerrest.herokuapp.com/gettrainings')
             .then(responce => responce.json())
-            .then(datas => setTrainings(
-                datas.map(data => ({
+            .then(data => setTrainings(
+                data.map(data => ({
                     activity: data.activity,
                     name: data.customer.firstname + ' ' + data.customer.lastname,
                     date: data.date,
-                    duration: data.duration
                 }))
             ))
             .catch(err => console.error(err))
@@ -31,34 +29,32 @@ function Calender() {
     useEffect(() => fetchTrainings());
 
     return (
-        <div className="ag-theme-material" style={{color: 'navy', height: 800, width: '90%', margin: 'auto' }}>
-        <FullCalendar 
-          
-        plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
-        headerToolbar={{
-        
-          left: 'today,prev,next',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
-        }}
-        
-            initialView="timeGridWeek"
-            selectMirror={true}
-            dayMaxEvents={true}
-            
-            
-            events={trainings.map(training => ({
-                
-                start: training.date,
-                end: training.duration,
-                title: training.activity +' / '+ training.name,
-                meridiem: 'short'
-                
-            }))
-            }
-            
-        />
-        
+        <div className="ag-theme-material" style={{ color: 'navy', height: 800, width: '90%', margin: 'auto' }}>
+            <FullCalendar
+
+                plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+                headerToolbar={{
+
+                    left: 'today,prev,next',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                }}
+
+                initialView="timeGridWeek"
+                selectMirror={true}
+                dayMaxEvents={true}
+
+
+                events={trainings.map(training => ({
+
+                    date: training.date,
+                    title: training.activity + ' / ' + training.name,
+
+                }))
+                }
+
+            />
+
         </div>
     )
 }

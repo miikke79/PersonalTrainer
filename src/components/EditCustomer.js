@@ -44,7 +44,7 @@ function EditCustomer(props) {
     };
 
     const inputChanged = event => {
-        setCustomer({...customer, [event.target.name]: event.target.value })
+        setCustomer({ ...customer, [event.target.name]: event.target.value })
     }
 
 

@@ -16,9 +16,9 @@ function Customer() {
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState("");
     const [gridApi, setGridApi] = useState(null);
-  
+
     const onGridReady = (params) => {
-      setGridApi(params.api);
+        setGridApi(params.api);
 
     };
 
@@ -40,7 +40,7 @@ function Customer() {
     const onBtnExport = () => {
         gridApi.exportDataAsCsv();
         console.log(gridApi);
-      };
+    };
 
     const deleteCustomer = url => {
         if (window.confirm('Are you sure you want to delete this customer?')) {
