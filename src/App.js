@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-import Customer from './components/customer';
-import Trainings from './components/trainings';
-import Calendar from './components/calendar';
-import Statistics from './components/statistics';
+import Customer from './components/Customer';
+import Trainings from './components/Trainings';
+import Calendar from './components/Calendar';
+import Statistics from './components/Statistics';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
